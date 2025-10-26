@@ -103,3 +103,26 @@
         document.body.style.backgroundColor = "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ")");
     });
 })();
+// Zadanie 7
+(function () {
+    var button = document.getElementById("ex6_button");
+    var content = document.getElementById("ex6_content");
+    if (!button || !content)
+        return;
+    var counter = 0;
+    var intervalId = null;
+    button.addEventListener("click", function () {
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+            button.textContent = "Start";
+        }
+        else {
+            intervalId = window.setInterval(function () {
+                counter++;
+                content.textContent = "Counter: ".concat(counter);
+            }, 1000);
+            button.textContent = "Stop";
+        }
+    });
+})();

@@ -114,3 +114,27 @@
         document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
     });
 })();
+
+// Zadanie 7
+(() => {
+  const button = document.getElementById("ex6_button") as HTMLButtonElement | null;
+  const content = document.getElementById("ex6_content") as HTMLDivElement | null;
+  if (!button || !content) return;
+
+  let counter = 0;
+  let intervalId: number | null = null;
+
+  button.addEventListener("click", () => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      intervalId = null;
+      button.textContent = "Start";
+    } else {
+      intervalId = window.setInterval(() => {
+        counter++;
+        content.textContent = `Counter: ${counter}`;
+      }, 1000);
+      button.textContent = "Stop";
+    }
+  });
+})();
