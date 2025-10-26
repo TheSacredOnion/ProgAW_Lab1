@@ -77,3 +77,25 @@
     });
   });
 })();
+
+// Zadanie 4
+(() => {
+    const element = document.getElementById("ex6_element") as HTMLElement | null;
+    const button = document.getElementById("ex6_animate_button") as HTMLButtonElement | null;
+    console.log(element, button);
+    if (!element || !button) return;
+
+    button.addEventListener("click", () => {
+        const endPosition = window.innerWidth - element.offsetWidth - 20;
+
+        element.style.left = `${endPosition}px`;
+        console.log(endPosition);
+
+        const handleTransitionEnd = () => {
+            element.style.left = '0px';
+            element.removeEventListener('transitionend', handleTransitionEnd);
+        };
+
+        element.addEventListener('transitionend', handleTransitionEnd);
+    });
+})();

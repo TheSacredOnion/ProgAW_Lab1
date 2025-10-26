@@ -70,3 +70,21 @@
         });
     });
 })();
+// Zadanie 4
+(function () {
+    var element = document.getElementById("ex6_element");
+    var button = document.getElementById("ex6_animate_button");
+    console.log(element, button);
+    if (!element || !button)
+        return;
+    button.addEventListener("click", function () {
+        var endPosition = window.innerWidth - element.offsetWidth - 20;
+        element.style.left = "".concat(endPosition, "px");
+        console.log(endPosition);
+        var handleTransitionEnd = function () {
+            element.style.left = '0px';
+            element.removeEventListener('transitionend', handleTransitionEnd);
+        };
+        element.addEventListener('transitionend', handleTransitionEnd);
+    });
+})();
