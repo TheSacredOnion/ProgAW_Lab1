@@ -1,61 +1,72 @@
 // Zadanie 1
-const button = document.getElementById("ex1_button");
-button.addEventListener("click", function() {
-  let numbers = "";
-  for (let i = 0; i < 10; i++) {
-    numbers += i + ", ";
-  }
-  document.getElementById("ex1_content").innerText = numbers.slice(0, -2);
-});
-
+(function () {
+    var button = document.getElementById("ex1_button");
+    var content = document.getElementById("ex1_content");
+    if (button && content) {
+        button.addEventListener("click", function () {
+            var numbers = "";
+            for (var i = 0; i < 10; i++) {
+                numbers += i + ", ";
+            }
+            content.innerText = numbers.slice(0, -2);
+        });
+    }
+})();
 // Zadanie 2
-const inputNumber = document.getElementById("ex2_text");
-const contentDiv = document.getElementById("ex2_content");
-
-function validatePhoneNumber() {
-  const phoneNumber = inputNumber.value;
-  let errors = [];
-
-  if (phoneNumber.length !== 9) {
-    errors.push("Długość numeru telefonu musi wynosić 9 cyfr.");
-  }
-  if (/[a-zA-Z]/.test(phoneNumber)) {
-    errors.push("Numer telefonu nie może zawierać liter.");
-  }
-  if (/[!@#$%^&*(),.?":{}|<>]/.test(phoneNumber)) {
-    errors.push("Numer telefonu nie może mieć znaków specjalnych.");
-  }
-
-  if (errors.length === 0) {
-    contentDiv.textContent = "Numer telefonu jest poprawny.";
-  } else {
-    contentDiv.innerHTML = errors.join("<br>");
-  }
-}
-
-inputNumber.addEventListener("input", validatePhoneNumber);
-
+(function () {
+    var inputNumber = document.getElementById("ex2_text");
+    var contentDiv = document.getElementById("ex2_content");
+    if (inputNumber && contentDiv) {
+        inputNumber.addEventListener("input", function () {
+            var phoneNumber = inputNumber.value;
+            var errors = [];
+            if (phoneNumber.length !== 9) {
+                errors.push("Długość numeru telefonu musi wynosić 9 cyfr.");
+            }
+            if (/[a-zA-Z]/.test(phoneNumber)) {
+                errors.push("Numer telefonu nie może zawierać liter.");
+            }
+            if (/[!@#$%^&*(),.?\":{}|<>]/.test(phoneNumber)) {
+                errors.push("Numer telefonu nie może mieć znaków specjalnych.");
+            }
+            if (errors.length === 0) {
+                contentDiv.textContent = "Numer telefonu jest poprawny.";
+            }
+            else {
+                contentDiv.innerHTML = errors.join("<br>");
+            }
+        });
+    }
+})();
 // Zadanie 3
-
-const ex3Draggable = document.getElementById("ex3_element");
-const ex3Dropzones = [
-  document.getElementById("ex3_one"),
-  document.getElementById("ex3_two")
-];
-
-ex3Draggable.addEventListener("dragstart", function(event) {
-  event.dataTransfer.setData("text/plain", event.target.id);
-});
-
-ex3Dropzones.forEach(zone => {
-  zone.addEventListener("dragover", function(event) {
-    event.preventDefault();
-  });
-
-  zone.addEventListener("drop", function(event) {
-    event.preventDefault();
-    const data = event.dataTransfer.getData("text/plain");
-    const draggableElement = document.getElementById(data);
-    zone.appendChild(draggableElement);
-  });
-});
+(function () {
+    var ex3Draggable = document.getElementById("ex3_element");
+    var ex3Dropzones = [
+        document.getElementById("ex3_one"),
+        document.getElementById("ex3_two")
+    ];
+    if (ex3Draggable) {
+        ex3Draggable.addEventListener("dragstart", function (event) {
+            if (event.dataTransfer) {
+                event.dataTransfer.setData("text/plain", ex3Draggable.id);
+            }
+        });
+    }
+    ex3Dropzones.forEach(function (zone) {
+        if (!zone)
+            return;
+        zone.addEventListener("dragover", function (event) {
+            event.preventDefault();
+        });
+        zone.addEventListener("drop", function (event) {
+            event.preventDefault();
+            if (!event.dataTransfer)
+                return;
+            var data = event.dataTransfer.getData("text/plain");
+            var draggableElement = document.getElementById(data);
+            if (draggableElement) {
+                zone.appendChild(draggableElement);
+            }
+        });
+    });
+})();
