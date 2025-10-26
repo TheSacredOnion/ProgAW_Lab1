@@ -38,20 +38,24 @@ inputNumber.addEventListener("input", validatePhoneNumber);
 // Zadanie 3
 
 const ex3Draggable = document.getElementById("ex3_element");
-const ex3Dropzone1 = document.getElementById("ex3_one");
-const ex3Dropzone2 = document.getElementById("ex3_two");
+const ex3Dropzones = [
+  document.getElementById("ex3_one"),
+  document.getElementById("ex3_two")
+];
 
 ex3Draggable.addEventListener("dragstart", function(event) {
   event.dataTransfer.setData("text/plain", event.target.id);
 });
 
-ex3Dropzone2.addEventListener("dragover", function(event) {
-  event.preventDefault();
-});
+ex3Dropzones.forEach(zone => {
+  zone.addEventListener("dragover", function(event) {
+    event.preventDefault();
+  });
 
-ex3Dropzone2.addEventListener("drop", function(event) {
-  event.preventDefault();
-  const id = event.dataTransfer.getData("text/plain");
-  const draggableElement = document.getElementById(id);
-  ex3Dropzone2.appendChild(draggableElement);
+  zone.addEventListener("drop", function(event) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("text/plain");
+    const draggableElement = document.getElementById(data);
+    zone.appendChild(draggableElement);
+  });
 });
