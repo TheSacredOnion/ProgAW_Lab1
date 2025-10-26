@@ -13,12 +13,13 @@
   }
 })();
 
-// Zadanie 2
+// Zadanie 2 oraz Zadanie 6
 (() => {
   const inputNumber = document.getElementById("ex2_text") as HTMLInputElement | null;
   const contentDiv = document.getElementById("ex2_content") as HTMLDivElement | null;
+  const counterDiv = document.getElementById("ex2_counter") as HTMLDivElement | null;
 
-  if (inputNumber && contentDiv) {
+  if (inputNumber && contentDiv && counterDiv) {
     inputNumber.addEventListener("input", () => {
       const phoneNumber = inputNumber.value;
       let errors: string[] = [];
@@ -38,6 +39,7 @@
       } else {
           contentDiv.innerHTML = errors.join("<br>");
       }
+      counterDiv.textContent = `Wpisano ${phoneNumber.length} znaków`;
     });
   }
 })();

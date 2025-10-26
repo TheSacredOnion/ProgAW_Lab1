@@ -12,11 +12,12 @@
         });
     }
 })();
-// Zadanie 2
+// Zadanie 2 oraz Zadanie 6
 (function () {
     var inputNumber = document.getElementById("ex2_text");
     var contentDiv = document.getElementById("ex2_content");
-    if (inputNumber && contentDiv) {
+    var counterDiv = document.getElementById("ex2_counter");
+    if (inputNumber && contentDiv && counterDiv) {
         inputNumber.addEventListener("input", function () {
             var phoneNumber = inputNumber.value;
             var errors = [];
@@ -35,6 +36,7 @@
             else {
                 contentDiv.innerHTML = errors.join("<br>");
             }
+            counterDiv.textContent = "Wpisano ".concat(phoneNumber.length, " znak\u00F3w");
         });
     }
 })();
