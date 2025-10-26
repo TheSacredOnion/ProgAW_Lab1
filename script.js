@@ -88,3 +88,16 @@
         element.addEventListener('transitionend', handleTransitionEnd);
     });
 })();
+// Zadanie 5
+(function () {
+    var button = document.getElementById("ex4_button");
+    if (!button)
+        return;
+    button.addEventListener("click", function () {
+        var randomValue = function () { return Math.floor(Math.random() * 151) + 50; };
+        var r = randomValue();
+        var g = randomValue();
+        var b = randomValue();
+        document.body.style.backgroundColor = "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ")");
+    });
+})();

@@ -99,3 +99,16 @@
         element.addEventListener('transitionend', handleTransitionEnd);
     });
 })();
+
+// Zadanie 5
+(() => {
+    const button = document.getElementById("ex4_button") as HTMLButtonElement | null;
+    if (!button) return;
+    button.addEventListener("click", () => {
+        const randomValue = () => Math.floor(Math.random() * 151) + 50;
+        const r = randomValue();
+        const g = randomValue();
+        const b = randomValue();
+        document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    });
+})();
